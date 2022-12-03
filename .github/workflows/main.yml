@@ -1,0 +1,73 @@
+#---------------------------------------------------------------------
+# GitHub Action Workflow
+#
+# Version      Date        Info
+# 1.0          2022        Initial Version
+#
+#---------------------------------------------------------------------
+name: Github-testing
+env:
+  APPLICATION_NAME    : "MyFlaskApp"
+  DEPLOY_PACKAGE_NAME : "flask-app-ver-${{ github.sha }}"
+
+on: 
+  push:
+    branches: 
+      - master
+
+
+jobs:
+  my_testing:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - name: Print nice message from Testing Job
+        run : echo "Hello World from Test"
+
+      - name: Execute few commands
+        run : |
+          echo "Hello Message1"
+          echo "Hello Message2"
+          echo "Printing Global ENV variable ${{ env.DEPLOY_PACKAGE_NAME }}"
+          
+      - name: List current folder
+        run : ls -la
+
+      - name: Git clone my repo
+        uses: actions/checkout@v1
+          
+      - name: List current folder again
+        run : ls -la
+
+  my_deploy:
+    runs-on: [ubuntu-latest]
+    needs: [my_testing]      
+    env:
+      VAR1 : "Job Variable 1"
+      VAR2 : "Job Variable 2"
+    
+    steps:
+      - name: Print nice message from Deploy Job
+        run : echo "Hello World from Deploy"
+      
+      - name: List current folder
+        run : ls -la
+
+      - name: Printing some info
+        run : echo "App name is ${{ env.APPLICATION_NAME }}"
+
+      - name: Printing some more info
+        run : |
+          echo "Var1 = ${{ env.VAR1 }}"
+          echo "Var2 = ${{ env.VAR2 }}"
+      
+      - name: Print super local env var
+        run : echo "This is local variable $LOCAL_VAR1"
+        env :
+          LOCAL_VAR1 : "Hello Iam local Variable"
+
+      - name: Check if command exist
+        run : aws --version
+        
+      - name: Check if ZIP exist
+        run : zip --version
