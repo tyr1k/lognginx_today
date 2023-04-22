@@ -24,8 +24,5 @@
     <li>Nginx</li>
     <li>Bash</li>
   </ul>
-
-  <h2>License</h2>
-  <p>This project is licensed under the MIT License - see the <code>LICENSE</code> file for details.</p>
 </body>
 </html>
