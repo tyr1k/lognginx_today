@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Script to extract response codes from Nginx access log</title>
+  Script to extract response codes from Nginx access log
 </head>
 <body>
   <h1>Script to extract response codes from Nginx access log</h1>
