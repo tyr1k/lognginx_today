@@ -1,23 +1,33 @@
-Access Log Analyzer
-This script is designed to analyze the access log of an nginx web server. It extracts log entries for a specified date, counts the number of occurrences of each HTTP response code, and outputs the results.
+<html>
+<head>
+  <title>Script to extract response codes from Nginx access log</title>
+</head>
+<body>
+  <h1>Script to extract response codes from Nginx access log</h1>
+  <p>This is a simple bash script that extracts response codes from an Nginx access log for a given day.</p>
 
-Usage
-Clone the repository or download the script.
-Make sure you have permission to execute the script.
-Open the terminal and navigate to the directory where the script is located.
-Run the script by typing ./access_log_analyzer.sh.
-If the script is successful, it will output a list of HTTP response codes and the number of occurrences for each code.
-Prerequisites
-This script is designed to work with an nginx web server.
-The log file should be located at /var/log/nginx/access.log.
-The script requires read access to the log file.
-How it works
-The script first checks if the log file exists. If the file does not exist, the script will terminate with an error message.
+  <h2>Usage</h2>
+  <p>Before running the script, make sure to set the <code>log_file</code> variable to the path of your Nginx access log file.</p>
+  <p>To run the script:</p>
+  <pre><code>./extract_response_codes.sh</code></pre>
 
-Next, the script extracts log entries for the current date and saves them to a new file named <current_date>_access.log.
+  <h2>Description</h2>
+  <p>The script performs the following steps:</p>
+  <ol>
+    <li>Checks if the specified log file exists.</li>
+    <li>Extracts the access log entries for the current date into a new file named with the current date.</li>
+    <li>Extracts the response codes from the new access log file and sorts them by frequency.</li>
+    <li>Displays the sorted response codes.</li>
+    <li>Deletes the new access log file.</li>
+  </ol>
 
-The script then extracts the HTTP response codes from the new file, counts the number of occurrences of each code, and sorts the results by frequency.
+  <h2>Dependencies</h2>
+  <ul>
+    <li>Nginx</li>
+    <li>Bash</li>
+  </ul>
 
-Finally, the script outputs the list of HTTP response codes and the number of occurrences for each code.
-
-Note that the new log file created during the analysis is automatically deleted by the script after the results are output.
+  <h2>License</h2>
+  <p>This project is licensed under the MIT License - see the <code>LICENSE</code> file for details.</p>
+</body>
+</html>
